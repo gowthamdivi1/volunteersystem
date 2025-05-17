@@ -1,0 +1,20 @@
+{# Template to display a list of all volunteering opportunities #}
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>All Opportunities</h2>
+  {% if opportunities %}
+    <ul class="list-group">
+      {% for opp in opportunities %}
+        <li class="list-group-item">
+          <strong>{{ opp.title }}</strong><br>
+          <span>{{ opp.date }} – {{ opp.location }}</span><br>
+          <a href="{% url 'catalog:opportunity_detail' opp.pk %}">View Details</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No opportunities available at this time.</p>
+  {% endif %}
+{% endblock %}
+

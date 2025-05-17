@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Organizer Details</h2>
+  <p><strong>Name:</strong> {{ organizer.first_name }} {{ organizer.last_name }}</p>
+  <p><strong>Email:</strong> {{ organizer.email }}</p>
+  <p><strong>Organization:</strong> {{ organizer.organization }}</p>
+{% endblock %}

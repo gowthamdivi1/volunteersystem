@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>My Opportunities</h2>
+
+  {% if opportunities %}
+    <ul class="list-group">
+      {% for opp in opportunities %}
+        <li class="list-group-item">
+          <strong>{{ opp.title }}</strong><br>
+          <span>{{ opp.date }} – {{ opp.location }}</span><br>
+          <a href="{% url 'catalog:opportunity_detail' opp.pk %}">View Details</a>
+        </li>
+      {% endfor %}
+    </ul>
+
+  {% else %}
+    <p>Please <a href="{% url 'login' %}">log in</a> to see your opportunities.</p>
+  {% endif %}
+
+{% endblock %}

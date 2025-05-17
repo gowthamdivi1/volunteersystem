@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Volunteering Dates</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .date-list { margin-top: 20px; }
+        .date-item { margin-bottom: 10px; }
+        form.inline { display: inline; }
+        input[type="submit"], button { margin-left: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Manage Available Volunteering Dates</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Date</button>
+    </form>
+
+    <div class="date-list">
+        <h2>Available Dates</h2>
+        {% for date in dates %}
+            <div class="date-item">
+                {{ date.date }}
+                <form method="POST" action="{% url 'remove_date' date.pk %}" class="inline">
+                    {% csrf_token %}
+                    <button type="submit">Remove</button>
+                </form>
+            </div>
+        {% empty %}
+            <p>No available dates yet.</p>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

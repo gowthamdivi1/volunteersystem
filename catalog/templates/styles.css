@@ -1,0 +1,87 @@
+/* General Body Styling */
+body {
+    background-color: #f4f9f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: #056676;
+    margin-bottom: 1rem;
+}
+
+/* Navigation Bar Overrides */
+.navbar {
+    background-color: #056676 !important;
+}
+
+.navbar-brand, .nav-link {
+    color: #ffffff !important;
+}
+
+.nav-link:hover {
+    color: #e3f2fd !important;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #028090;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #056676;
+}
+
+.btn-success {
+    background-color: #00a896;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #028090;
+}
+
+/* Forms */
+form {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.05);
+}
+
+input[type="text"], input[type="email"], input[type="password"], select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 16px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Lists */
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* Opportunity Cards */
+.opportunity-card {
+    background: #ffffff;
+    border-left: 5px solid #00a896;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}

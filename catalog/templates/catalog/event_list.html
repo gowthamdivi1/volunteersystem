@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Events</h1>
+<p><a href="{% url 'catalog:event_create' %}">+ New Event</a></p>
+<ul>
+  {% for e in events %}
+    <li>
+      <a href="{% url 'catalog:event_detail' e.pk %}">
+        {{ e.title }} — {{ e.start_time|date:"Y-m-d H:i" }}
+      </a>
+    </li>
+  {% empty %}
+    <li>No events yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
