@@ -1,0 +1,21 @@
+<!-- catalog/templates/catalog/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Volunteer Event List</title>
+</head>
+<body>
+    <h1>Upcoming Events</h1>
+    <ul>
+        {% for event in events %}
+            <li>
+                <a href="{% url 'catalog:event_detail' event.id %}">
+                    {{ event.title }} ({{ event.start_time }} - {{ event.end_time }})
+                </a>
+            </li>
+        {% empty %}
+            <li>No events available.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

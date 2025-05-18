@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-{% block content %}
-  <h1>Delete Event?</h1>
-  <p>Are you sure you want to delete “{{ object.title }}”?</p>
-  <form method="post">{% csrf_token %}
-    <button type="submit">Yes, delete</button>
-  </form>
-  <p><a href="{% url 'catalog:event_detail' object.pk %}">No, go back</a></p>
-{% endblock %}

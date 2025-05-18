@@ -1,0 +1,80 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+<h1>Admin Dashboard</h1>
+
+<div style="margin-bottom: 30px;">
+    <p><strong>Total Events:</strong> {{ total_events }}</p>
+    <p><strong>Total Volunteer Roles:</strong> {{ total_roles }}</p>
+    <p><strong>Total Registrations:</strong> {{ total_registrations }}</p>
+</div>
+
+<h2>Recent Registrations</h2>
+<table border="1" cellspacing="0" cellpadding="8">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Event</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Registration Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for reg in recent_registrations %}
+        <tr>
+            <td>{{ reg.user.get_full_name|default:reg.user.username }}</td>
+            <td>{{ reg.event.title }}</td>
+            <td>{{ reg.role.name }}</td>
+            <td>{{ reg.status }}</td>
+            <td>{{ reg.timestamp|date:"Y-m-d H:i" }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">No registrations yet.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<hr style="margin: 30px 0;">
+
+<h2>Events Management</h2>
+<a href="{% url 'add_event' %}">➕ Add New Event</a>
+<table border="1" cellpadding="8" cellspacing="0" style="margin-top: 10px; width: 100%;">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Category</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events %}
+        <tr>
+            <td>{{ event.title }}</td>
+            <td>{{ event.date }}</td>
+            <td>{{ event.location }}</td>
+            <td>{{ event.category }}</td>
+            <td>{{ event.type }}</td>
+            <td>
+                <a href="{% url 'edit_event' event.id %}">Edit</a> |
+                <a href="{% url 'delete_event' event.id %}">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="6">No events found.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<hr style="margin: 30px 0;">
+
+<h2>Manage</h2>
+<ul>
+    <li><a href="{% url 'add_event' %}">➕ Add New Event</a></li>
+    <li><a href="{% url 'role_list' %}">👥 Manage Roles</a></li>
+    <li><a href="{% url 'my_registrations' %}">📄 View My Registrations</a></li>
+</ul>
+{% endblock %}

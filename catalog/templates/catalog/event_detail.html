@@ -1,17 +1,25 @@
-{% extends "base.html" %}
-{% block content %}
-  <h1>{{ event.title }}</h1>
-  <p>{{ event.description }}</p>
-  <p>
-    <strong>When:</strong> {{ event.start_time }} – {{ event.end_time }}<br>
-    <strong>Where:</strong> {{ event.location }}
-  </p>
-  {% if event.organizer.user == request.user %}
-    <p>
-      <a href="{% url 'catalog:event_edit'   event.pk %}">Edit</a> |
-      <a href="{% url 'catalog:event_delete' event.pk %}">Delete</a>
-    </p>
-  {% endif %}
-  <p><a href="{% url 'catalog:event_list' %}">← Back to events</a></p>
-{% endblock %}
+{% extends 'catalog/base.html' %}
 
+{% block content %}
+<h2>{{ event.title }}</h2>
+<p><strong>Date:</strong> {{ event.date }}</p>
+<p><strong>Location:</strong> {{ event.location }}</p>
+<p><strong>Category:</strong> {{ event.category }}</p>
+<p><strong>Type:</strong> {{ event.type }}</p>
+
+<hr>
+
+{% if already_registered %}
+    <div class="alert alert-info">
+        You have already registered for this event.
+    </div>
+{% else %}
+    <h4>Register for this event</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Register</button>
+    </form>
+{% endif %}
+
+{% endblock %}

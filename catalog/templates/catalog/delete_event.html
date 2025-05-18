@@ -1,0 +1,22 @@
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib import messages
+from .models import Event
+
+# Utility: Check if user is admin
+def is_admin(user):
+    return user.is_authenticated and getattr(user, 'role', '') == 'admin'
+
+
+@login_required
+@user_passes_test(is_admin)
+def delete_event(request, event_id):
+    event = get_object_or_404(Event, pk=event_id)
+
+    if request.method == 'POST':
+        event.delete()
+        messages.success(request, f"Event '{event.title}' deleted successfully.")
+        return redirect('admin_dashboard')
+
+    # GET request shows a confirmation page
+    return render(request, 'catalog/delete_event.html', {'event': event})

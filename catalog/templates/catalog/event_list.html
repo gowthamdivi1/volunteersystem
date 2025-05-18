@@ -1,16 +1,16 @@
-{% extends "base.html" %}
+{% extends 'catalog/base.html' %}
+
 {% block content %}
-<h1>Events</h1>
-<p><a href="{% url 'catalog:event_create' %}">+ New Event</a></p>
-<ul>
-  {% for e in events %}
-    <li>
-      <a href="{% url 'catalog:event_detail' e.pk %}">
-        {{ e.title }} — {{ e.start_time|date:"Y-m-d H:i" }}
-      </a>
-    </li>
-  {% empty %}
-    <li>No events yet.</li>
-  {% endfor %}
+<h2>Upcoming Events</h2>
+
+<ul class="list-group">
+    {% for event in events %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ event.title }} — {{ event.date|date:"Y-m-d H:i" }}
+            <a class="btn btn-sm btn-outline-primary" href="{% url 'event_detail' event.id %}">Details</a>
+        </li>
+    {% empty %}
+        <li class="list-group-item">No events available.</li>
+    {% endfor %}
 </ul>
 {% endblock %}

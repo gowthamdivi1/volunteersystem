@@ -1,0 +1,22 @@
+{% extends "catalog/base.html" %}
+
+{% block content %}
+  <h2>My Event Registrations</h2>
+
+  {% if registrations %}
+    <ul class="list-group">
+      {% for reg in registrations %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <strong>{{ reg.event.title }}</strong><br>
+            Role: {{ reg.role.name }}<br>
+            Status: {{ reg.status|title }}<br>
+            Registered on: {{ reg.timestamp|date:"F j, Y, g:i a" }}
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>You have not registered for any events yet.</p>
+  {% endif %}
+{% endblock %}
