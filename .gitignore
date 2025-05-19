@@ -1,20 +1,36 @@
-# Files to ignore when pushing a PyCharm Django project to github:
-#files only needed by a PyCharm project and local-only django files
+# PyCharm project files
 .idea/
+*.iml
 
-#the virtual environment name - use the name of your virtual environment
-#if different from venv
-.venv
+# Python virtual environments
+.venv/
+venv/
 
-### Django ###
-*.log
-*.pot
-*.pyc
+# Python bytecode
 __pycache__/
+*.py[cod]
+*$py.class
+
+# Logs
+*.log
+
+# Translations
+*.pot
+
+# Django local settings (optional)
 local_settings.py
-db.sqlite3
-media
-# Ignore Django Migrations in Development if you are working on team
-# Only for Development only
-**/migrations/**
-!**/migrations/__init__.py
+
+# Media uploads (optional - include if you store user uploads locally)
+media/
+
+# Ignore SQLite DB only in teams or CI; allow for solo/local deploy
+# Uncomment the next line to exclude DB if using a shared or remote DB
+# db.sqlite3
+
+# Allow Django migrations (required for deployment)
+# Only ignore compiled `.pyc` within them
+**/migrations/*.pyc
+**/migrations/__pycache__/
+
+# Allow migration Python files
+!**/migrations/*.py
